@@ -31,7 +31,9 @@
         <dxi-item itemType="group" [colCount]="3" [colSpan]="3">
           <dxi-item dataField="tenant" [label]="{text: 'Tenant'}" [visible]="false"
                     [editorOptions]="{ value: G_TENANT }"></dxi-item>
+
           <dxi-item dataField="logisticsId" [label]="{text: 'Logisticsid'}" [visible]="false"></dxi-item>
+
           <dxi-item dataField="soKey" [label]="{text: utilService.convert('so_so_soKey')}" [colSpan]="1"></dxi-item>
 
           <dxi-item dataField="soType" [colSpan]="1"
@@ -49,6 +51,7 @@
                                             noDataText: utilService.convert('com_txt_noDataText')
                                           }">
           </dxi-item>
+          
           <dxi-item dataField="sts" [colSpan]="1"
                     editorType="dxSelectBox"
                     [label]="{text: utilService.convert('so_so_sts')}"

@@ -140,7 +140,7 @@ export class TranordComponent implements  OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initMap();
-    this.setLocationMap(this.switchLocation.value);
+    // this.setLocationMap(this.switchLocation.value);
     this.bookmarkToggleBtn.instance.option('icon', 'chevrondown');
 
     this.getUserBookmarkAddress().then(result => {
@@ -214,8 +214,8 @@ export class TranordComponent implements  OnInit, AfterViewInit {
   }
 
   initData(): void {
-    this.map.destroy();
-    this.initMap();
+    // this.map.destroy();
+    // this.initMap();
     this.drawInfoArr = [];
 
     this.mainForm.formData = {};
@@ -257,112 +257,112 @@ export class TranordComponent implements  OnInit, AfterViewInit {
     }
   }
 
-  async setLocationMap(data): Promise<void> {
-    let latitude = null;
-    let longitude = null;
+  // async setLocationMap(data): Promise<void> {
+  //   let latitude = null;
+  //   let longitude = null;
 
-    if (!data) {
-      if (navigator.geolocation) {
-        await navigator.geolocation.getCurrentPosition(async (position: any) => {
-            if (position) {
-              // console.log(position);
-              //
-              // console.log('Latitude: ' + position.coords.latitude + 'Longitude: ' + position.coords.longitude);
+  //   if (!data) {
+  //     if (navigator.geolocation) {
+  //       await navigator.geolocation.getCurrentPosition(async (position: any) => {
+  //           if (position) {
+  //             // console.log(position);
+  //             //
+  //             // console.log('Latitude: ' + position.coords.latitude + 'Longitude: ' + position.coords.longitude);
 
-              latitude = position.coords.latitude;
-              longitude = position.coords.longitude;
+  //             latitude = position.coords.latitude;
+  //             longitude = position.coords.longitude;
 
-              // @ts-ignore
-              this.map.setCenter(new Tmapv2.LatLng(latitude, longitude));
-              this.map.setZoom(14);
+  //             // @ts-ignore
+  //             this.map.setCenter(new Tmapv2.LatLng(latitude, longitude));
+  //             this.map.setZoom(14);
 
-              const result = await this.service.reverseGeocoding({lat: latitude, lon: longitude});
+  //             const result = await this.service.reverseGeocoding({lat: latitude, lon: longitude});
 
-              // console.log(result);
-              // console.log(result.addressInfo);
-              this.weatherAddress = result.addressInfo.city_do + ' ' + result.addressInfo.gu_gun + ' ' + result.addressInfo.legalDong;
+  //             // console.log(result);
+  //             // console.log(result.addressInfo);
+  //             this.weatherAddress = result.addressInfo.city_do + ' ' + result.addressInfo.gu_gun + ' ' + result.addressInfo.legalDong;
 
-              this.weather = await this.service.getCurrentWeather(latitude, longitude, null);
+  //             this.weather = await this.service.getCurrentWeather(latitude, longitude, null);
 
-              // console.log(this.weather);
+  //             // console.log(this.weather);
 
-              const weatherDate = this.utilService.convertUTCDateTime(this.weather.dt);
+  //             const weatherDate = this.utilService.convertUTCDateTime(this.weather.dt);
 
-              this.weather.currentTime = weatherDate.getHours();
+  //             this.weather.currentTime = weatherDate.getHours();
 
-              this.weatherForecast = await this.service.getForecast(latitude, longitude, null);
+  //             this.weatherForecast = await this.service.getForecast(latitude, longitude, null);
 
-              this.weatherForecast.list.forEach(el => {
-                const forecastDate = this.utilService.convertUTCDateTime(el.dt);
+  //             this.weatherForecast.list.forEach(el => {
+  //               const forecastDate = this.utilService.convertUTCDateTime(el.dt);
 
-                el.currentTime = forecastDate.getHours();
-              });
+  //               el.currentTime = forecastDate.getHours();
+  //             });
 
-              console.log(this.weatherForecast.list);
-            }
-          },
-          async (error: any) => {
-            console.log(error);
+  //             console.log(this.weatherForecast.list);
+  //           }
+  //         },
+  //         async (error: any) => {
+  //           console.log(error);
 
-            if (this.weatherAddress == null && this.weather == null) {
-              latitude = this.map.getCenter().lat();
-              longitude = this.map.getCenter().lng();
+  //           if (this.weatherAddress == null && this.weather == null) {
+  //             latitude = this.map.getCenter().lat();
+  //             longitude = this.map.getCenter().lng();
 
-              const result = await this.service.reverseGeocoding({lat: latitude, lon: longitude});
+  //             const result = await this.service.reverseGeocoding({lat: latitude, lon: longitude});
 
-              this.weatherAddress = result.addressInfo.city_do + ' ' + result.addressInfo.gu_gun + ' ' + result.addressInfo.legalDong;
+  //             this.weatherAddress = result.addressInfo.city_do + ' ' + result.addressInfo.gu_gun + ' ' + result.addressInfo.legalDong;
 
-              this.weather = await this.service.getCurrentWeather(latitude, longitude, null);
+  //             this.weather = await this.service.getCurrentWeather(latitude, longitude, null);
 
-              const weatherDate = this.utilService.convertUTCDateTime(this.weather.dt);
+  //             const weatherDate = this.utilService.convertUTCDateTime(this.weather.dt);
 
-              this.weather.currentTime = weatherDate.getHours();
+  //             this.weather.currentTime = weatherDate.getHours();
 
-              this.weatherForecast = await this.service.getForecast(latitude, longitude, null);
+  //             this.weatherForecast = await this.service.getForecast(latitude, longitude, null);
 
-              this.weatherForecast.list.forEach(el => {
-                const forecastDate = this.utilService.convertUTCDateTime(el.dt);
+  //             this.weatherForecast.list.forEach(el => {
+  //               const forecastDate = this.utilService.convertUTCDateTime(el.dt);
 
-                el.currentTime = forecastDate.getHours();
-              });
-            } else {
-              this.utilService.notify_error('위치 정보에 대한 권한이 없습니다.');
-            }
-          });
-      }
-    } else {
-      const mainFormData = this.mainForm.formData;
+  //               el.currentTime = forecastDate.getHours();
+  //             });
+  //           } else {
+  //             this.utilService.notify_error('위치 정보에 대한 권한이 없습니다.');
+  //           }
+  //         });
+  //     }
+  //   } else {
+  //     const mainFormData = this.mainForm.formData;
 
-      if (mainFormData.endPoint) {
-        latitude = mainFormData.endPoint.latitude;
-        longitude = mainFormData.endPoint.longitude;
+  //     if (mainFormData.endPoint) {
+  //       latitude = mainFormData.endPoint.latitude;
+  //       longitude = mainFormData.endPoint.longitude;
 
-        // @ts-ignore
-        this.map.setCenter(new Tmapv2.LatLng(latitude, longitude));
-        this.map.setZoom(14);
+  //       // @ts-ignore
+  //       this.map.setCenter(new Tmapv2.LatLng(latitude, longitude));
+  //       this.map.setZoom(14);
 
-        const result = await this.service.reverseGeocoding({lat: latitude, lon: longitude});
+  //       const result = await this.service.reverseGeocoding({lat: latitude, lon: longitude});
 
-        this.weatherAddress = result.addressInfo.city_do + ' ' + result.addressInfo.gu_gun + ' ' + result.addressInfo.legalDong;
+  //       this.weatherAddress = result.addressInfo.city_do + ' ' + result.addressInfo.gu_gun + ' ' + result.addressInfo.legalDong;
 
-        this.weather = await this.service.getCurrentWeather(latitude, longitude, null);
+  //       this.weather = await this.service.getCurrentWeather(latitude, longitude, null);
 
-        const weatherDate = this.utilService.convertUTCDateTime(this.weather.dt);
+  //       const weatherDate = this.utilService.convertUTCDateTime(this.weather.dt);
 
-        this.weather.currentTime = weatherDate.getHours();
+  //       this.weather.currentTime = weatherDate.getHours();
 
-        this.weatherForecast = await this.service.getForecast(latitude, longitude, null);
+  //       this.weatherForecast = await this.service.getForecast(latitude, longitude, null);
 
-        this.weatherForecast.list.forEach(el => {
-          const forecastDate = this.utilService.convertUTCDateTime(el.dt);
+  //       this.weatherForecast.list.forEach(el => {
+  //         const forecastDate = this.utilService.convertUTCDateTime(el.dt);
 
-          el.currentTime = forecastDate.getHours();
-        });
-      } else {
-        this.utilService.notify_error('입력 된 하차지가 없습니다.');
-      }
-    }
-  }
+  //         el.currentTime = forecastDate.getHours();
+  //       });
+  //     } else {
+  //       this.utilService.notify_error('입력 된 하차지가 없습니다.');
+  //     }
+  //   }
+  // }
 
   async onSearch(): Promise<void> {
     const result = await this.service.sendPost({tenant: this.G_TENANT, userId: this.utilService.getUserUid()}, 'findTranOrd');

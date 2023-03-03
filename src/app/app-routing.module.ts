@@ -50,6 +50,10 @@ import {TranordallocateComponent} from './pages/admin/tranordallocate/tranordall
 import {TranordmassComponent} from './pages/admin/tranordmass/tranordmass.component';
 import {TranordaccidentComponent} from './pages/admin/tranordaccident/tranordaccident.component';
 import { AstemsComponent } from './pages/admin/astems/astems.component';
+import { Astems02Component } from './pages/admin/astems02/astems02.component';
+import { Astems03Component } from './pages/admin/astems03/astems03.component';
+import { Astems04Component } from './pages/admin/astems04/astems04.component';
+import { Astems05Component } from './pages/admin/astems05/astems05.component';
 /* 관리자 */
 
 /* 화주 */
@@ -230,6 +234,26 @@ const routes: Routes = [
     {
       path: 'tr/admin/astems',
       component: AstemsComponent,
+      canActivate: [AuthGuardService]
+    },
+    {
+      path: 'tr/admin/astems02',
+      component: Astems02Component,
+      canActivate: [AuthGuardService]
+    },
+    {
+      path: 'tr/admin/astems03',
+      component: Astems03Component,
+      canActivate: [AuthGuardService]
+    },
+    {
+      path: 'tr/admin/astems04',
+      component: Astems04Component,
+      canActivate: [AuthGuardService]
+    },
+    {
+      path: 'tr/admin/astems05',
+      component: Astems05Component,
       canActivate: [AuthGuardService]
     },
     /* 관리자 */

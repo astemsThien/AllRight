@@ -110,7 +110,8 @@ export class Layout7Component implements OnInit {
     this.sMap.height = 'calc( 100vh - 75px ) ';
     this.sMap.width = '100%';
 
-    this.sMap.markers = [{
+    this.sMap.markers = 
+    [{
       location: [37.14662571373519, 127.5939137276295],
       // tooltip: {
       //   isShown: true,

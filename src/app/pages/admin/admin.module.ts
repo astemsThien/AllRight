@@ -8,6 +8,10 @@ import {TranordallocateComponent} from './tranordallocate/tranordallocate.compon
 import {TranordaccidentComponent} from './tranordaccident/tranordaccident.component';
 import {PopupModule} from '../popup/popup.module';
 import { AstemsComponent } from './astems/astems.component';
+import { Astems02Component } from './astems02/astems02.component';
+import { Astems03Component } from './astems03/astems03.component';
+import { Astems04Component } from './astems04/astems04.component';
+import { Astems05Component } from './astems05/astems05.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { AstemsComponent } from './astems/astems.component';
     TranordstatusComponent,
     TranordallocateComponent,
     TranordaccidentComponent,
-    AstemsComponent
+    AstemsComponent,
+    Astems02Component,
+    Astems03Component,
+    Astems04Component,
+    Astems05Component
   ],
   imports: [
     DevExtremeModule,
